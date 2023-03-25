@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Signup</title>
+</head>
+<body>
+<h1>Welcome to Signup Page</h1><br>
+<form action="signup" method="post">
+Name:<input type="text" name="name" required="required"><br>
+EMail:<input type="email" name="email" required="required"><br>
+Mobile:<input type="tel" name="mob" pattern="[0-9]{10}" required="required"><br>
+Password:<input type="password" name="password" required="required"><br>
+Gender:<input type="radio" name="gender" value="male" required="required">Male<br>
+       <input type="radio" name="gender" value="female">Female<br>
+Date of Birth:<input type="date" name="dob" required="required"><br>
+Address:<textarea rows="5" cols="30" name="address" required="required"></textarea> <br>
+<button type="reset">Cancel</button><button>Signup</button>
+</form>
+<br>
+<a href="Home.jsp"><button>Home</button></a>
+</body>
+</html>
