@@ -52,10 +52,10 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	customer.setAddress(address);
 	customer.setAge(age);
 	
-	
-	dao.save(customer);
+	dao.save(customer);   
 	
 	resp.getWriter().print("<h1 style='color:green'>Account Created Successfully</h1>");
+	resp.getWriter().print("<h1 style='color:blue'>Your Customer Id is : "+customer.getCustid()+"</h1>");
 	req.getRequestDispatcher("Home.jsp").include(req, resp);
 	}
 	else {

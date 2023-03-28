@@ -31,4 +31,9 @@ public List<Customer> find(String email)
 {
 	return manager.createQuery("select x from Customer x where email=?1").setParameter(1, email).getResultList();
 }
+
+public Customer find(int custid)
+{
+	return manager.find(Customer.class, custid);
+}
 }
