@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CustomerDao;
 import dto.Customer;
 
 @WebServlet("/signup")
@@ -28,10 +29,19 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	
 	Date date=Date.valueOf(dob);
 	
+	CustomerDao dao=new CustomerDao();
+	
 	int age=Period.between(date.toLocalDate(), LocalDate.now()).getYears();
 	
-	
-	
+	if(age<18)
+	{
+		resp.getWriter().print("<h1 style='color:red'>Can not create Account, Age should be greater than 18 to create account</h1>");
+		req.getRequestDispatcher("Signup.html").include(req, resp);
+	}
+	else {
+		
+	if(dao.find(Long.parseLong(mobile)).isEmpty() && dao.find(email).isEmpty())
+	{
 	Customer customer=new Customer();
 	customer.setName(name);
 	customer.setEmail(email);
@@ -42,6 +52,17 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	customer.setAddress(address);
 	customer.setAge(age);
 	
+	
+	dao.save(customer);
+	
+	resp.getWriter().print("<h1 style='color:green'>Account Created Successfully</h1>");
+	req.getRequestDispatcher("Home.jsp").include(req, resp);
+	}
+	else {
+		resp.getWriter().print("<h1 style='color:red'>Can not create Account, Mobile Number or Email already Exists</h1>");
+		req.getRequestDispatcher("Signup.html").include(req, resp);
+	}
+	}
 	
 	
 	
