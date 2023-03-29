@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import dto.Customer;
+import dto.Product;
 
 public class CustomerDao 
 {
@@ -35,5 +36,12 @@ public List<Customer> find(String email)
 public Customer find(int custid)
 {
 	return manager.find(Customer.class, custid);
+}
+
+public void save(Product product)
+{
+	transaction.begin();
+	manager.persist(product);
+	transaction.commit();
 }
 }

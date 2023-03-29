@@ -33,7 +33,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		if(customer.getPassword().equals(password))
 		{
 			req.getSession().setAttribute("customer", customer);
-			resp.getWriter().print("<h1style='color:green'>Login Success</h1>");
+			resp.getWriter().print("<h1 style='color:green'>Login Success</h1>");
 			req.getRequestDispatcher("Home.jsp").include(req, resp);
 		}
 		else {
